@@ -5,7 +5,7 @@
 	<key>Author</key>
 	<string>Buffer</string>
 	<key>Builder Version</key>
-	<string>7534.51.22</string>
+	<string>7534.55.3</string>
 	<key>CFBundleDisplayName</key>
 	<string>Buffer</string>
 	<key>CFBundleIdentifier</key>
@@ -50,26 +50,10 @@
 	<key>Content</key>
 	<dict>
 		<key>Scripts</key>
-		<dict>
-			<key>End</key>
-			<array>
-				<string>buffer-end.js</string>
-			</array>
-			<key>Start</key>
-			<array>
-				<string>buffer.js</string>
-				<string>twitter-buffer.js</string>
-				<string>jquery-1.7.1.min.js</string>
-				<string>jquery.hotkeys.js</string>
-			</array>
-		</dict>
-		<key>Stylesheets</key>
-		<array>
-			<string>twitter-buffer.css</string>
-		</array>
+		<dict/>
 	</dict>
 	<key>Description</key>
-	<string>Buffer helps you Tweet more consistently.</string>
+	<string>Easily add great articles, pictures and videos to your Buffer and we automagically share them for you through the day!</string>
 	<key>ExtensionInfoDictionaryVersion</key>
 	<string>1.0</string>
 	<key>Permissions</key>
