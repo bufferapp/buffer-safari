@@ -1,9 +1,9 @@
 /*
 
-Buffer for Chrome
+Buffer for Safari
 
-Authors: Joel Gascoigne         Tom Ashworth
-         joel@bufferapp.com     tom.a@bufferapp.com
+Authors: Tom Ashworth           Joel Gascoigne
+         tom.a@bufferapp.com    joel@bufferapp.com
 
 */
 
@@ -11,7 +11,7 @@ Authors: Joel Gascoigne         Tom Ashworth
 var config = {};
 config.plugin = {
     label: "Buffer This Page",
-    guide: 'http://bufferapp.com/guides/chrome',
+    guide: 'http://bufferapp.com/guides/safari',
     menu: {
         page: {
             label: "Buffer This Page"
@@ -34,7 +34,7 @@ var attachOverlay = function (data, cb) {
     
     var tab = data.tab;
         
-    var port = PortWrapper(chrome.tabs.connect(tab.id));
+    var port = PortWrapper(tab, "main-overlay");
 
     // Remove the port once the Buffering is complete
     port.on('buffer_done', function (overlayData) {
@@ -53,51 +53,26 @@ var attachOverlay = function (data, cb) {
 // Show the guide on first run
 if( ! localStorage.getItem('buffer.run') ) {
     localStorage.setItem('buffer.run', true);
-    chrome.tabs.create({
-        url: config.plugin.guide
-    })
+    safari.application.activeBrowserWindow.openTab(config.plugin.guide);
 }
 
 // Fire the overlay when the button is clicked
-chrome.browserAction.onClicked.addListener(function(tab) {
-    attachOverlay({tab: tab});
-});
+safari.application.addEventListener("command", function(ev) {
+    if( ev.command === "buffer_click" ) attachOverlay({tab: safari.application.activeBrowserWindow.activeTab});
+}, false);
 
-// Context menus
-// Page
-chrome.contextMenus.create({
-    title: config.plugin.menu.page.label,
-    contexts: ["page"],
-    onclick: function (info, tab) {
-        attachOverlay({tab: tab});
-    }
-});
-
-// Selection
-chrome.contextMenus.create({
-    title: config.plugin.menu.selection.label,
-    contexts: ["selection"],
-    onclick: function (info, tab) {
-        attachOverlay({tab: tab});
-    }
-});
-
-// Listen for embedded events (twitter/hacker news)
-chrome.extension.onConnect.addListener(function(chport) {
+// Listen for embedded events (twitter/hacker news etc)
+PortWrapper(safari.application.activeBrowserWindow).on("buffer_click", function(embed) {
     
-    if( chport.name !== "buffer-embed" ) return; 
-
-    var port = PortWrapper(chport);
-    var tab = port.raw.sender.tab;
+    var tab = safari.application.activeBrowserWindow.activeTab;
+    var port = PortWrapper(tab, "main-embed");
     
     // Listen for embedded triggers
-    port.on("buffer_click", function (embed) {
-        attachOverlay({tab: tab, embed: embed}, function (overlaydata) {
-            if( !!overlaydata.sent ) {
-                // Buffer was sent
-                port.emit("buffer_twitter_clear");
-            }
-        });
+    attachOverlay({tab: tab, embed: embed}, function (overlaydata) {
+        if( !!overlaydata.sent ) {
+            // Buffer was sent
+            port.emit("buffer_embed_clear");
+        }
     });
     
 });

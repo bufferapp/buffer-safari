@@ -1,33 +1,26 @@
-// Make the stupid Chrome ports act like Firefox ones
-var PortWrapper = function (port) {
+// Make the (really) stupid Safari ports act like Firefox ones
+// Safari 'ports' are actually 'proxy' objects
+var PortWrapper = function (port, name) {
     
-    var sub = {};
-    
-    port.onMessage.addListener(function (data) {
-       
-        if( !sub[data.type] ) return;
-       
-        var i, length = sub[data.type].length;
-        for( i=0; i < length; i++ ) {
-            sub[data.type][i](data.payload);
-        }
-        
-    });
+    var contentScript = false;
+    if( port.tab ) contentScript = true;
     
     return {
         on: function (type, cb) {
-            if( !sub[type] ) sub[type] = [];
-            sub[type].push(cb);
+            console.log(name, "listening for", type);
+            return port.addEventListener("message", function (ev) {
+                if( ev.name == type ) cb(ev.message);
+            }, false);
+        },
+        off: function (type) {
+            port.removeEventListener(type);
         },
         emit: function(type, payload) {
-            port.postMessage({
-                type: type,
-                payload: payload
-            });
+            console.log(name, "dispatching ", type, payload);
+            if( contentScript ) port.tab.dispatchMessage(type, payload);
+            else port.page.dispatchMessage(type, payload);
         },
-        sub: function () { return sub; },
         destroy: function () {
-            sub = {};
             port = null;
         },
         name: port.name,

@@ -17,11 +17,40 @@
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>Chrome</key>
-	<dict/>
+	<dict>
+		<key>Database Quota</key>
+		<real>1048576</real>
+		<key>Global Page</key>
+		<string>buffer.html</string>
+		<key>Toolbar Items</key>
+		<array>
+			<dict>
+				<key>Command</key>
+				<string>buffer_click</string>
+				<key>Identifier</key>
+				<string>buffer-toolbar-button</string>
+				<key>Image</key>
+				<string>Icon.png</string>
+				<key>Label</key>
+				<string>Buffer</string>
+			</dict>
+		</array>
+	</dict>
 	<key>Content</key>
 	<dict>
 		<key>Scripts</key>
-		<dict/>
+		<dict>
+			<key>Start</key>
+			<array>
+				<string>data/safari/buffer-safari-port-wrapper.js</string>
+				<string>data/safari/buffer-safari-embed.js</string>
+				<string>data/libs/jquery-1.7.2.min.js</string>
+				<string>data/libs/postmessage.js</string>
+				<string>data/buffer-overlay.js</string>
+				<string>data/embeds/buffer-hotkey.js</string>
+				<string>data/safari/buffer-safari.js</string>
+			</array>
+		</dict>
 	</dict>
 	<key>Description</key>
 	<string>Easily add great articles, pictures and videos to your Buffer and we automagically share them for you through the day!</string>
