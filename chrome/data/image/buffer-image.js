@@ -1,6 +1,10 @@
-$(function () {
+;(function () {
     
     var config = {};
+    config.endpoint = {
+        http: "http://static.bufferapp.com/js/button.js",
+        https: "https://d389zggrogs7qo.cloudfront.net/js/button.js"
+    };
     config.image = {
         attribute: 'data-buffer-id',
         size: {
@@ -51,12 +55,13 @@ $(function () {
         anchor.className = "buffer-add-button";
         anchor.setAttribute('data-count', 'none');
         anchor.setAttribute('data-picture', image.src);
-        anchor.setAttribute('data-url', image.src); // TODO: remove this? Is this how pictures should work?
+        anchor.setAttribute('data-url', '' + document.location);
         
         buttonwrap.appendChild(anchor);
         
         var script = document.createElement('script');
-        script.src = "http://static.bufferapp.com/js/button.js";
+        if( document.location.protocol == "https:" ) script.src = config.endpoint.https;
+        else script.src = config.endpoint.http;
         
         buttonwrap.appendChild(script);
         
@@ -193,4 +198,4 @@ $(function () {
         } 
     });
 
-});
+}());

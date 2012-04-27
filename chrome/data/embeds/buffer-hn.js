@@ -1,4 +1,4 @@
-$(function() {
+;(function() {
     
     var config = {};
     config.base = "http://news.ycombinator.org/",
@@ -7,6 +7,7 @@ $(function() {
 	        text: "add to buffer",
     	    container: 'td.subtext',
 	        className: 'buffer-hn-button',
+	        selector: '.buffer-hn-button',
 	        data: function (elem) {
 	            var article = $(elem).parents('tr').prev('tr').find('.title').children('a');
 	            var title = $(article).text().trim();
@@ -67,4 +68,4 @@ $(function() {
 	
 	insertButtons();
 
-});
+}());

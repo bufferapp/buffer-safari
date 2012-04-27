@@ -1,4 +1,4 @@
-$(function() {
+;(function() {
     
     var css = $('<style>.tweet .actions a{font-size:12px}div.stream-item:not(.open) div.tweet.original-tweet div.stream-item-header ul.actions{width:100%;padding-left:0;background-image:none;text-align:right}div.stream-item:not(.open) div.tweet.original-tweet div.stream-item-header ul.actions li{background-color:#fff}li.buffer-fade-action{display:none}li.buffer-fade-action span{display:none}.original-tweet .stream-item-header li.buffer-fade-action{background-color:transparent!important;display:inline}.original-tweet .stream-item-header li.buffer-fade-action span{background-image:url(https://si0.twimg.com/a/1323713549/t1/img/twitter_web_sprite_bgs.png)!important;background-position:0 -240px!important;background-repeat:repeat-x!important;width:45px!important;display:inline-block!important;position:relative;right:-5px}a.buffer-action.new{text-decoration:none!important}.open .original-tweet .stream-item-header a.buffer-action.new,.expando-profile-popup a.buffer-action.new{display:none}a.buffer-action.new span i{margin-right:0!important;background-image:url(https://buffer-static.s3.amazonaws.com/images/twttr-sprite.png)!important;background-repeat:no-repeat!important;background-position:-5px -5px!important;margin-right:1px!important;width:16px}.in-reply-to a.buffer-action.new span i,.replies-to a.buffer-action.new span i{background-position:-5px -30px!important}.slideshow-tweet a.buffer-action.new span i{background-position:-5px -55px!important}.slideshow-tweet a.buffer-action.new:hover span i{background-color:#fff!important}a.buffer-action.new:hover span b{text-decoration:underline}div#buffer_add_tweet_container{position:fixed!important;width:100%;height:100%;z-index:99999999999}iframe#buffer_iframe{border:0;height:100%;width:100%;position:fixed;z-index:99999999999;top:0;left:0}a.buffer-action.old span i{background:url(http://bufferapp.com/images/buffer_button_icon.png)!important;background-position:0 2px!important;background-repeat:no-repeat!important;opacity:.5!important;margin-left:3px!important;margin-right:0!important}a.buffer-action.old:hover span i{opacity:.8!important}</style>');
 	$('head').append(css);
@@ -17,6 +17,7 @@ $(function() {
 	        after: 'input.tweet-counter',
 	        default: '',
 	        className: 'buffer-tweet-button btn disabled',
+	        selector: '.buffer-tweet-button',
 	        style: 'background: #4C9E46; background: -webkit-linear-gradient(bottom, #4C9E46 25%, #54B14E 63%); border: 1px solid #40873B; color: white !important; text-shadow: rgba(0, 0, 0, 0.246094) 0px -1px 0px; font-weight: bold;',
 	        hover: 'background: #40873B; background: -webkit-linear-gradient(bottom, #40873B 25%, #4FA749 63%);',
 	        active: 'box-shadow: inset 0 5px 10px -6px rgba(0,0,0,.5); background: #40873B; background: -webkit-linear-gradient(bottom, #40873B 25%, #4FA749 63%);',
@@ -49,6 +50,7 @@ $(function() {
     	    container: '#retweet-dialog div.twttr-prompt',
 	        after: 'div.js-prompt-ok',
 	        className: 'buffer-tweet-button btn',
+	        selector: '.buffer-tweet-button',
 	        default: 'background: #4C9E46; background: -webkit-linear-gradient(bottom, #4C9E46 25%, #54B14E 63%); border: 1px solid #40873B; color: white !important; text-shadow: rgba(0, 0, 0, 0.246094) 0px -1px 0px; font-weight: bold;',
 	        style: 'background: #4C9E46; background: -webkit-linear-gradient(bottom, #4C9E46 25%, #54B14E 63%); border: 1px solid #40873B; color: white !important; text-shadow: rgba(0, 0, 0, 0.246094) 0px -1px 0px; font-weight: bold;',
 	        hover: 'background: #40873B; background: -webkit-linear-gradient(bottom, #40873B 25%, #4FA749 63%);',
@@ -65,6 +67,7 @@ $(function() {
 	        after: '#char-count',
 	        default: 'margin-right: 8px; background: #eee; background: -webkit-linear-gradient(bottom, #eee 25%, #f8f8f8 63%); border: 1px solid #999; color: #444 !important; text-shadow: rgba(0, 0, 0, 0.246094) 0px -1px 0px;',
 	        className: 'button',
+	        selector: '.button',
 	        style: 'margin-right: 8px; background: #4C9E46; background: -webkit-linear-gradient(bottom, #4C9E46 25%, #54B14E 63%); border: 1px solid #40873B; color: white !important; text-shadow: rgba(0, 0, 0, 0.246094) 0px -1px 0px;',
 	        hover: 'background: #40873B; background: -webkit-linear-gradient(bottom, #40873B 25%, #4FA749 63%);',
 	        active: 'box-shadow: inset 0 5px 10px -6px rgba(0,0,0,.5); background: #40873B; background: -webkit-linear-gradient(bottom, #40873B 25%, #4FA749 63%);',
@@ -90,7 +93,7 @@ $(function() {
 	            });	            
 	            activate();
 	        }
-        },
+        }
 	];
 
     ;(function bufferTwitter() {
@@ -316,4 +319,4 @@ $(function() {
 
     }());
     
-});
+}());
