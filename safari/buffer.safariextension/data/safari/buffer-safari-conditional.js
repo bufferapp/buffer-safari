@@ -1,3 +1,4 @@
+// Not used, but here for use in future. Doesn't quite work right.
 var safariConditionalLoad = function () {
     
     var config = {};
@@ -41,7 +42,7 @@ var safariConditionalLoad = function () {
             debugger;
             rtn = safari.extension.addContentScriptFromURL(url(config.scripts[set].js[script]), config.scripts[set].matches, [], false);
             if( rtn ) {
-                console.log(rtn, " was injected!");
+                //console.log(rtn, " was injected!");
             } else {
                 log("removing", url(config.scripts[set].js[script]));
                 safari.extension.removeContentScript(url(config.scripts[set].js[script]));
@@ -49,7 +50,7 @@ var safariConditionalLoad = function () {
         }
         
         for(var script in config.scripts[set].css) {
-            console.log("testing", url(config.scripts[set].css[script]), config.scripts[set].matches);
+            //console.log("testing", url(config.scripts[set].css[script]), config.scripts[set].matches);
             safari.extension.addContentStyleSheetFromURL(url(config.scripts[set].css[script]), config.scripts[set].matches, [], false);
         }
         

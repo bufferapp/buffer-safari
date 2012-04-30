@@ -61,12 +61,6 @@ safari.application.addEventListener("command", function(ev) {
     if( ev.command === "buffer_click" ) attachOverlay({tab: safari.application.activeBrowserWindow.activeTab});
 }, false);
 
-// On navigate, check for embed matches
-safari.application.addEventListener("navigate", function(ev) {
-    console.log("Navigate", ev);
-    //safariConditionalLoad();
-}, false);
-
 // Listen for embedded events (twitter/hacker news etc)
 PortWrapper(safari.application.activeBrowserWindow).on("buffer_click", function(embed) {
     
