@@ -9,13 +9,13 @@
 	<key>CFBundleDisplayName</key>
 	<string>Buffer</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.buffer.safari</string>
+	<string>com.bufferapp.buffer</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleShortVersionString</key>
 	<string>2.0.0</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>2.0.0</string>
 	<key>Chrome</key>
 	<dict>
 		<key>Database Quota</key>
@@ -72,6 +72,8 @@
 			<string>All</string>
 		</dict>
 	</dict>
+	<key>Update Manifest URL</key>
+	<string>http://bufferapp.com/extensions/safari/version.plist</string>
 	<key>Website</key>
 	<string>http://bufferapp.com</string>
 </dict>
