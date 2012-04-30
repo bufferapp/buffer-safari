@@ -45,6 +45,9 @@
 				<string>data/buffer-overlay.js</string>
 				<string>data/embeds/buffer-hotkey.js</string>
 				<string>data/safari/buffer-safari.js</string>
+				<string>data/embeds/buffer-twitter.js</string>
+				<string>data/embeds/buffer-hn.js</string>
+				<string>data/embeds/buffer-google-reader.js</string>
 			</array>
 			<key>Start</key>
 			<array>

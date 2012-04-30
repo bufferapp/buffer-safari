@@ -1,4 +1,4 @@
-;(function () {
+var safariConditionalLoad = function () {
     
     var config = {};
     config.base = safari.extension.baseURI;
@@ -33,18 +33,26 @@
         
     };
     
-    var scripts = [];
+    var scripts = [], rtn = null;
     
     for(var set in config.scripts) {
         
         for(var script in config.scripts[set].js) {
-            safari.extension.addContentScriptFromURL(url(config.scripts[set].js[script]), config.scripts[set].matches, [], false);
+            debugger;
+            rtn = safari.extension.addContentScriptFromURL(url(config.scripts[set].js[script]), config.scripts[set].matches, [], false);
+            if( rtn ) {
+                console.log(rtn, " was injected!");
+            } else {
+                log("removing", url(config.scripts[set].js[script]));
+                safari.extension.removeContentScript(url(config.scripts[set].js[script]));
+            }
         }
         
         for(var script in config.scripts[set].css) {
+            console.log("testing", url(config.scripts[set].css[script]), config.scripts[set].matches);
             safari.extension.addContentStyleSheetFromURL(url(config.scripts[set].css[script]), config.scripts[set].matches, [], false);
         }
         
     }
     
-}());
+};
