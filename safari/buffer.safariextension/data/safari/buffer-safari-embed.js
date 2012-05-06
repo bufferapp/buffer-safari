@@ -1,1 +1,1 @@
-if( ! self.port.raw ) self.port = PortWrapper(safari.self, "embed");
+if( ! xt.port.raw ) xt.port = PortWrapper(safari.self, "embed");

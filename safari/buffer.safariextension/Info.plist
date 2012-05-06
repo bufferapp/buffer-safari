@@ -13,9 +13,9 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleShortVersionString</key>
-	<string>2.0.0</string>
+	<string>2.1.0</string>
 	<key>CFBundleVersion</key>
-	<string>2.0.0</string>
+	<string>2.1.0</string>
 	<key>Chrome</key>
 	<dict>
 		<key>Database Quota</key>
@@ -48,13 +48,16 @@
 				<string>data/embeds/buffer-twitter.js</string>
 				<string>data/embeds/buffer-hn.js</string>
 				<string>data/embeds/buffer-google-reader.js</string>
+				<string>data/embeds/buffer-reddit.js</string>
+				<string>data/embeds/buffer-facebook.js</string>
 			</array>
 			<key>Start</key>
 			<array>
-				<string>data/safari/buffer-safari-port-wrapper.js</string>
-				<string>data/safari/buffer-safari-embed.js</string>
 				<string>data/libs/jquery-1.7.2.min.js</string>
 				<string>data/libs/postmessage.js</string>
+				<string>data/safari/buffer-safari-data-wrapper.js</string>
+				<string>data/safari/buffer-safari-port-wrapper.js</string>
+				<string>data/safari/buffer-safari-embed.js</string>
 			</array>
 		</dict>
 	</dict>

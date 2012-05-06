@@ -6,15 +6,15 @@ var safariConditionalLoad = function () {
     config.scripts = [
         {
       	    matches: ["http://*.twitter.com/*", "https://*.twitter.com/*"],
-    	    js: ["data/embeds/buffer-twitter.js"]
+    	    js: ["data/safari/buffer-safari-port-wrapper.js", "data/safari/buffer-safari-data-wrapper.js", "data/safari/buffer-safari-embed.js", "data/embeds/buffer-twitter.js"]
     	},
     	{
             matches: ["http://*.google.com/reader/*", "https://*.google.com/reader/*"],
-    	    js: ["data/embeds/buffer-google-reader.js"]
+    	    js: ["data/safari/buffer-safari-port-wrapper.js", "data/safari/buffer-safari-data-wrapper.js", "data/safari/buffer-safari-embed.js","data/embeds/buffer-google-reader.js"]
     	},
     	{
             matches: ["http://*.ycombinator.org/*", "http://*.ycombinator.com/*"],
-      	    js: ["data/embeds/buffer-hn.js"]
+      	    js: ["data/safari/buffer-safari-port-wrapper.js", "data/safari/buffer-safari-data-wrapper.js", "data/safari/buffer-safari-embed.js", "data/embeds/buffer-hn.js"]
       	}
     ];
     
@@ -39,10 +39,9 @@ var safariConditionalLoad = function () {
     for(var set in config.scripts) {
         
         for(var script in config.scripts[set].js) {
-            debugger;
             rtn = safari.extension.addContentScriptFromURL(url(config.scripts[set].js[script]), config.scripts[set].matches, [], false);
             if( rtn ) {
-                //console.log(rtn, " was injected!");
+                console.log(rtn, " was injected!");
             } else {
                 log("removing", url(config.scripts[set].js[script]));
                 safari.extension.removeContentScript(url(config.scripts[set].js[script]));
