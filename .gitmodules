@@ -1,0 +1,3 @@
+[submodule "safari/buffer.safariextension/data/shared"]
+	path = safari/buffer.safariextension/data/shared
+	url = git@github.com:bufferapp/buffer-extension-shared.git
