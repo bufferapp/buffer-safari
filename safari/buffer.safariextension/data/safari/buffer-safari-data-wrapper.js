@@ -8,7 +8,7 @@ var DataWrapper = function () {
     
     return {
         get: function (file) {
-            file = file.replace(/data\//, '');
+            file = file.replace(/data\/shared\//, '');
             return (document.location.protocol === 'http:' ? config.endpoint.http : config.endpoint.https) + file;
         }
     }
