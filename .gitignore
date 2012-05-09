@@ -2,3 +2,4 @@
 *.tmp
 *.log
 safari_identity.cer
+safari/*.safariextz
