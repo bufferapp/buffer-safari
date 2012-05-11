@@ -10,9 +10,9 @@
        <key>Developer Identifier</key>
        <string>UYDA63C4EC</string>
        <key>CFBundleVersion</key>
-       <string>2.1.4</string>
+       <string>2.1.5</string>
        <key>CFBundleShortVersionString</key>
-       <string>2.1.4</string>
+       <string>2.1.5</string>
        <key>URL</key>
        <string>https://s3.amazonaws.com/buffer-static/extensions/safari/buffer-2.1.4.safariextz</string>
      </dict>
