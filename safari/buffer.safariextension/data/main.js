@@ -11,7 +11,9 @@ Authors: Tom Ashworth           Joel Gascoigne
 var config = {};
 config.plugin = {
     label: "Buffer This Page",
-    guide: 'http://bufferapp.com/guides/safari',
+    guide: 'http://bufferapp.com/guides/safari/installed',
+    placement_prefix: 'safari-',
+    version: "2.1.6",
     menu: {
         page: {
             label: "Buffer This Page"
@@ -21,7 +23,7 @@ config.plugin = {
         },
         image: {
             label: "Buffer This Image"
-        },
+        }
     }
 };
 
@@ -31,6 +33,7 @@ var attachOverlay = function (data, cb) {
     if( typeof data === 'function' ) cb = data;
     if( ! data ) data = {};
     if( ! cb ) cb = function () {};
+    if( ! data.embed ) data.embed = {};
     
     var tab = data.tab;
         
@@ -45,6 +48,13 @@ var attachOverlay = function (data, cb) {
         }, 0);
     });
     
+    // Don't try to JSON encode a tab
+    data.tab = null;
+    // Pass statistic data
+    data.version = config.plugin.version;
+    if( data.embed.placement ) data.embed.placement = config.plugin.placement_prefix + data.embed.placement;
+    if( data.placement ) data.placement = config.plugin.placement_prefix + data.placement;
+    else if( data.embed.placement ) data.placement = data.embed.placement;
     // Inform overlay that click has occurred
     port.emit("buffer_click", data);
     
@@ -58,7 +68,12 @@ if( ! localStorage.getItem('buffer.run') ) {
 
 // Fire the overlay when the button is clicked
 safari.application.addEventListener("command", function(ev) {
-    if( ev.command === "buffer_click" ) attachOverlay({tab: safari.application.activeBrowserWindow.activeTab});
+    if( ev.command === "buffer_click" ) {
+        attachOverlay({
+            tab: safari.application.activeBrowserWindow.activeTab,
+            placement: 'toolbar'
+        });
+    }
 }, false);
 
 // Listen for embedded events (twitter/hacker news etc)
