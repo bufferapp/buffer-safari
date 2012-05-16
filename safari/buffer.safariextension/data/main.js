@@ -12,8 +12,7 @@ var config = {};
 config.plugin = {
     label: "Buffer This Page",
     guide: 'http://bufferapp.com/guides/safari/installed',
-    placement_prefix: 'safari-',
-    version: "2.1.6",
+    version: "2.1.7",
     menu: {
         page: {
             label: "Buffer This Page"
@@ -50,14 +49,13 @@ var attachOverlay = function (data, cb) {
     
     // Don't try to JSON encode a tab
     data.tab = null;
+
     // Pass statistic data
     data.version = config.plugin.version;
-    if( data.embed.placement ) data.embed.placement = config.plugin.placement_prefix + data.embed.placement;
-    if( data.placement ) data.placement = config.plugin.placement_prefix + data.placement;
-    else if( data.embed.placement ) data.placement = data.embed.placement;
-    // Inform overlay that click has occurred
-    port.emit("buffer_click", data);
+	if( data.embed.placement ) data.placement = data.embed.placement;
     
+	// Inform overlay that click has occurred
+    port.emit("buffer_click", data);
 };
 
 // Show the guide on first run
@@ -89,5 +87,4 @@ PortWrapper(safari.application.activeBrowserWindow).on("buffer_click", function(
             port.emit("buffer_embed_clear");
         }
     });
-    
 });
