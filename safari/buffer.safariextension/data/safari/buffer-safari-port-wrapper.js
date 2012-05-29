@@ -27,7 +27,7 @@ var PortWrapper = function (port, name) {
         },
         name: port.name,
         raw: port
-    }
+    };
     
 };
 
@@ -35,4 +35,4 @@ if( !xt ) var xt = {};
 xt.port = {
     on: function () {console.log("port.on called before initialised.", arguments)},
     emit: function () {console.log("port.emit called before initialised.", arguments)}
-}
+};

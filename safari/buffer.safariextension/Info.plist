@@ -5,7 +5,7 @@
 	<key>Author</key>
 	<string>Buffer</string>
 	<key>Builder Version</key>
-	<string>7534.51.22</string>
+	<string>7534.56.5</string>
 	<key>CFBundleDisplayName</key>
 	<string>Buffer</string>
 	<key>CFBundleIdentifier</key>
@@ -13,9 +13,9 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleShortVersionString</key>
-	<string>2.1.6</string>
+	<string>2.1.7</string>
 	<key>CFBundleVersion</key>
-	<string>2.1.6</string>
+	<string>2.1.7</string>
 	<key>Chrome</key>
 	<dict>
 		<key>Database Quota</key>
@@ -50,6 +50,8 @@
 				<string>data/shared/embeds/buffer-google-reader.js</string>
 				<string>data/shared/embeds/buffer-reddit.js</string>
 				<string>data/shared/embeds/buffer-facebook.js</string>
+				<string>data/shared/embeds/buffer-overlay-scraper.js</string>
+				<string>data/shared/embeds/buffer-scraper.js</string>
 			</array>
 			<key>Start</key>
 			<array>

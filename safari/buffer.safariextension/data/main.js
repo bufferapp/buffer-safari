@@ -75,7 +75,8 @@ safari.application.addEventListener("command", function(ev) {
 }, false);
 
 // Listen for embedded events (twitter/hacker news etc)
-PortWrapper(safari.application.activeBrowserWindow).on("buffer_click", function(embed) {
+var embedPort = PortWrapper(safari.application.activeBrowserWindow);
+embedPort.on("buffer_click", function(embed) {
     
     var tab = safari.application.activeBrowserWindow.activeTab;
     var port = PortWrapper(tab, "main-embed");
@@ -87,4 +88,24 @@ PortWrapper(safari.application.activeBrowserWindow).on("buffer_click", function(
             port.emit("buffer_embed_clear");
         }
     });
+});
+
+embedPort.on("buffer_details_request", function () {
+
+    var tab = safari.application.activeBrowserWindow.activeTab;
+    var port = PortWrapper(tab, "main-embed");
+
+    console.log("Details request.");
+    port.emit("buffer_details_request");
+
+});
+
+embedPort.on("buffer_details", function (data) {
+
+    var tab = safari.application.activeBrowserWindow.activeTab;
+    var port = PortWrapper(tab, "main-embed");
+
+    console.log(data);
+    port.emit("buffer_details", data);
+
 });
