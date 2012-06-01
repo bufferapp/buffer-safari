@@ -40,8 +40,10 @@ var attachOverlay = function (data, cb) {
 
     // Remove the port once the Buffering is complete
     port.on('buffer_done', function (overlayData) {
-        port.destroy();
-        port = null;
+        if( port ) {
+            port.destroy();
+            port = null;
+        }
         setTimeout(function () {
             cb(overlayData);
         }, 0);
@@ -90,12 +92,14 @@ embedPort.on("buffer_click", function(embed) {
     });
 });
 
+var overlayPort;
 embedPort.on("buffer_details_request", function () {
 
     var tab = safari.application.activeBrowserWindow.activeTab;
     var port = PortWrapper(tab, "main-embed");
 
-    console.log("Details request.");
+    overlayPort = port;
+
     port.emit("buffer_details_request");
 
 });
@@ -105,7 +109,8 @@ embedPort.on("buffer_details", function (data) {
     var tab = safari.application.activeBrowserWindow.activeTab;
     var port = PortWrapper(tab, "main-embed");
 
-    console.log(data);
-    port.emit("buffer_details", data);
+    if( overlayPort ) {
+       overlayPort.emit("buffer_details", data);
+    }
 
 });
