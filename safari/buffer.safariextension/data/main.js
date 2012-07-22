@@ -12,7 +12,7 @@ var config = {};
 config.plugin = {
     label: "Buffer This Page",
     guide: 'http://bufferapp.com/guides/safari/installed',
-    restart: 'http://local.bufferapp.com/guides/safari/restart',
+    restart: 'http://bufferapp.com/guides/safari/restart',
     version: "2.2.2",
     menu: {
         page: {
@@ -86,7 +86,7 @@ var findTab = function (attr, value) {
 };
 
 // Show restart guide on first run, then the guide
-if( ! localStorage.getItem('buffer.restart') ) {
+if( ! localStorage.getItem('buffer.run') && ! localStorage.getItem('buffer.restart') ) {
     localStorage.setItem('buffer.restart', true);
     openTab(config.plugin.restart);
 } else {
@@ -96,6 +96,7 @@ if( ! localStorage.getItem('buffer.restart') ) {
                 ev.target.close();
             }
         }, true);
+        localStorage.setItem('buffer.restart', true);
         localStorage.setItem('buffer.run', true);
         openTab(config.plugin.guide);
     }
