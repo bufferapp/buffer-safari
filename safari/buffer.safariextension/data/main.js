@@ -12,6 +12,7 @@ var config = {};
 config.plugin = {
     label: "Buffer This Page",
     guide: 'http://bufferapp.com/guides/safari/installed',
+    restart: 'http://local.bufferapp.com/guides/safari/restart',
     version: "2.2.2",
     menu: {
         page: {
@@ -60,10 +61,21 @@ var attachOverlay = function (data, cb) {
     port.emit("buffer_click", data);
 };
 
-// Show the guide on first run
-if( ! localStorage.getItem('buffer.run') ) {
-    localStorage.setItem('buffer.run', true);
-    safari.application.activeBrowserWindow.openTab(config.plugin.guide);
+var openTab = function (url) {
+    // Open the guides
+    var newTab = safari.application.activeBrowserWindow.openTab("foreground");
+    newTab.url = url;
+};
+
+// Show restart guide on first run, then the guide
+if( ! localStorage.getItem('buffer.restart') ) {
+    localStorage.setItem('buffer.restart', true);
+    openTab(config.plugin.restart);
+} else {
+    if( ! localStorage.getItem('buffer.run') ) {
+        localStorage.setItem('buffer.run', true);
+        openTab(config.plugin.guide);
+    }
 }
 
 // Fire the overlay when the button is clicked
