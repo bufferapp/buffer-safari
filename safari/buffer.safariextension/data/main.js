@@ -67,12 +67,35 @@ var openTab = function (url) {
     newTab.url = url;
 };
 
+// Query for a specific tab by attribute and value
+//
+// Example:
+//   var tabs = findTab('url', 'http://google.com');
+//
+// Returns an array of tabs
+var findTab = function (attr, value) {
+    var result = [];
+    safari.application.browserWindows.forEach(function (window) {
+        window.tabs.forEach(function (tab) {
+            if( !! tab[attr] && typeof tab[attr] === "string" && tab[attr].match(value) ) {
+                result.push(tab);
+            }
+        });
+    });
+    return result;
+};
+
 // Show restart guide on first run, then the guide
 if( ! localStorage.getItem('buffer.restart') ) {
     localStorage.setItem('buffer.restart', true);
     openTab(config.plugin.restart);
 } else {
     if( ! localStorage.getItem('buffer.run') ) {
+        safari.application.addEventListener('beforeNavigate', function (ev) {
+            if( ev.url.match(config.plugin.restart) ) {
+                ev.target.close();
+            }
+        }, true);
         localStorage.setItem('buffer.run', true);
         openTab(config.plugin.guide);
     }
