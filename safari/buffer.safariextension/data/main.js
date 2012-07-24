@@ -13,7 +13,7 @@ config.plugin = {
     label: "Buffer This Page",
     guide: 'http://bufferapp.com/guides/safari/installed',
     restart: 'http://bufferapp.com/guides/safari/restart',
-    version: "2.2.5",
+    version: "2.2.6",
     menu: {
         page: {
             label: "Buffer This Page"
