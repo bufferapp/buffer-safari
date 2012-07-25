@@ -78,7 +78,7 @@
 	</dict>
 	<dict>
 		<key>DefaultValue</key>
-		<string>alt-b</string>
+		<string>alt+b</string>
 		<key>Key</key>
 		<string>key-combo</string>
 		<key>Title</key>

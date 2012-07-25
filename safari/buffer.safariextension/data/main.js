@@ -112,8 +112,62 @@ safari.application.addEventListener("command", function(ev) {
     }
 }, false);
 
+var buildOptions = function () {
+
+    var prefs = [{
+        "name": "twitter",
+        "value": safari.extension.settings.twitter
+    },
+    {
+        "name": "facebook",
+        "value": safari.extension.settings.facebook
+    },
+    {
+        "name": "reader",
+        "value": safari.extension.settings.reader
+    },
+    {
+        "name": "reddit",
+        "value": safari.extension.settings.reddit
+    },
+    {
+        "name": "hacker",
+        "value": safari.extension.settings.hacker
+    },
+    {
+        "name": "key-combo",
+        "value": safari.extension.settings['key-combo']
+    },
+    {
+        "name": "key-enable",
+        "value": safari.extension.settings['key-enable']
+    }];
+
+    var options = {}, pref;
+
+    // Use "false" if false, and use the item name if true.
+    // Stupid, yep, but it made sense in Chrome.
+    // TODO: Make this less stupid.
+    for( var i in prefs ) {
+        if( prefs.hasOwnProperty(i) ) {
+            pref = prefs[i];
+            if( pref.name == 'key-combo' ) {
+                options['buffer.op.key-combo'] = safari.extension.settings['key-combo'];
+            } else {
+                if( safari.extension.settings[pref.name] === false ) {
+                    options["buffer.op." + pref.name] = "false";
+                } else {
+                    options["buffer.op." + pref.name] = pref.name;
+                }
+            }
+        }
+    }
+
+    return options;
+};
+
 // Listen for embedded events (twitter/hacker news etc)
-var embedPort = PortWrapper(safari.application.activeBrowserWindow);
+var embedPort = PortWrapper(safari.application);
 embedPort.on("buffer_click", function(embed) {
     
     var tab = safari.application.activeBrowserWindow.activeTab;
@@ -128,6 +182,15 @@ embedPort.on("buffer_click", function(embed) {
     });
 });
 
+embedPort.on("buffer_options", function(embed) {
+    
+    var tab = safari.application.activeBrowserWindow.activeTab;
+    var port = PortWrapper(tab, "main-embed");
+
+    port.emit('buffer_options', buildOptions());
+
+});
+
 var overlayPort;
 embedPort.on("buffer_details_request", function () {
 
@@ -137,6 +200,17 @@ embedPort.on("buffer_details_request", function () {
     overlayPort = port;
 
     port.emit("buffer_details_request");
+
+});
+
+embedPort.on("buffer_details", function (data) {
+
+    var tab = safari.application.activeBrowserWindow.activeTab;
+    var port = PortWrapper(tab, "main-embed");
+
+    if( overlayPort ) {
+       overlayPort.emit("buffer_details", data);
+    }
 
 });
 
