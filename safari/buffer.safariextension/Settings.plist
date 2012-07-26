@@ -96,5 +96,17 @@
 		<key>Type</key>
 		<string>CheckBox</string>
 	</dict>
+	<dict>
+		<key>Title</key>
+		<string>Please refresh any open tabs after making changes.</string>
+		<key>Type</key>
+		<string>Separator</string>
+	</dict>
+	<dict>
+		<key>Title</key>
+		<string>Please refresh any open tabs after making changes.</string>
+		<key>Type</key>
+		<string>Group</string>
+	</dict>
 </array>
 </plist>
