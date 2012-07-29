@@ -7,13 +7,20 @@ Authors: Tom Ashworth           Joel Gascoigne
 
 */
 
+// Grab info from Info.plist and convert it to Javascript object,
+// and store it in safari.info
+var req = new XMLHttpRequest();
+req.open('GET', safari.extension.baseURI + 'Info.plist', false);
+req.send();
+safari.info = PlistParser.parse(req.responseXML);
+
 // Configuration
 var config = {};
 config.plugin = {
     label: "Buffer This Page",
     guide: 'http://bufferapp.com/guides/safari/installed',
     restart: 'http://bufferapp.com/guides/safari/restart',
-    version: "2.2.6",
+    version: safari.info.CFBundleShortVersionString,
     menu: {
         page: {
             label: "Buffer This Page"
