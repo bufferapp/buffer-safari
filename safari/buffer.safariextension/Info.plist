@@ -5,7 +5,7 @@
 	<key>Author</key>
 	<string>Buffer</string>
 	<key>Builder Version</key>
-	<string>8536.25</string>
+	<string>8536.26.17</string>
 	<key>CFBundleDisplayName</key>
 	<string>Buffer</string>
 	<key>CFBundleIdentifier</key>
@@ -13,9 +13,9 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleShortVersionString</key>
-	<string>2.2.8</string>
+	<string>2.2.9</string>
 	<key>CFBundleVersion</key>
-	<string>2.2.8</string>
+	<string>2.2.9</string>
 	<key>Chrome</key>
 	<dict>
 		<key>Database Quota</key>
