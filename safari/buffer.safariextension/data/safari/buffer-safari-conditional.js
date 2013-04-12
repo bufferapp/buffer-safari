@@ -13,7 +13,7 @@ var safariConditionalLoad = function () {
     	    js: ["data/safari/buffer-safari-port-wrapper.js", "data/safari/buffer-safari-data-wrapper.js", "data/safari/buffer-safari-embed.js","data/embeds/buffer-google-reader.js"]
     	},
     	{
-            matches: ["http://*.ycombinator.org/*", "http://*.ycombinator.com/*"],
+            matches: ["http://*.ycombinator.org/*", "http://*.ycombinator.com/*", "https://*.ycombinator.com/*"],
       	    js: ["data/safari/buffer-safari-port-wrapper.js", "data/safari/buffer-safari-data-wrapper.js", "data/safari/buffer-safari-embed.js", "data/embeds/buffer-hn.js"]
       	}
     ];
