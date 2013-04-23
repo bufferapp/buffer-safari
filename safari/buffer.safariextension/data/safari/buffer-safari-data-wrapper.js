@@ -14,6 +14,10 @@ var DataWrapper = function () {
     };
     
 };
-
 if(!xt) var xt = {};
 xt.data = DataWrapper();
+
+if (typeof(Storage) !== 'undefined') {
+    // local storage is enabled
+    sessionStorage.bufferExtensionInstalled = true;
+}
