@@ -47,7 +47,6 @@
 				<string>data/safari/buffer-safari.js</string>
 				<string>data/shared/embeds/buffer-twitter.js</string>
 				<string>data/shared/embeds/buffer-hn.js</string>
-				<string>data/shared/embeds/buffer-google-reader.js</string>
 				<string>data/shared/embeds/buffer-reddit.js</string>
 				<string>data/shared/embeds/buffer-facebook.js</string>
 				<string>data/shared/embeds/buffer-overlay-scraper.js</string>
