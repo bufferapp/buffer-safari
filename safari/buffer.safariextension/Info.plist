@@ -13,9 +13,9 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleShortVersionString</key>
-	<string>2.2.15</string>
+	<string>2.2.16</string>
 	<key>CFBundleVersion</key>
-	<string>2.2.15</string>
+	<string>2.2.16</string>
 	<key>Chrome</key>
 	<dict>
 		<key>Database Quota</key>
@@ -30,7 +30,7 @@
 				<key>Identifier</key>
 				<string>buffer-toolbar-button</string>
 				<key>Image</key>
-				<string>Icon-small.png</string>
+				<string>Icon-small</string>
 				<key>Label</key>
 				<string>Buffer</string>
 			</dict>
