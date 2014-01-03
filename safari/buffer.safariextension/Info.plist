@@ -5,7 +5,7 @@
 	<key>Author</key>
 	<string>Buffer</string>
 	<key>Builder Version</key>
-	<string>9537.71</string>
+	<string>9537.73.11</string>
 	<key>CFBundleDisplayName</key>
 	<string>Buffer</string>
 	<key>CFBundleIdentifier</key>
@@ -13,9 +13,9 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleShortVersionString</key>
-	<string>2.2.17</string>
+	<string>2.2.18</string>
 	<key>CFBundleVersion</key>
-	<string>2.2.17</string>
+	<string>2.2.18</string>
 	<key>Chrome</key>
 	<dict>
 		<key>Database Quota</key>
@@ -45,6 +45,7 @@
 				<string>data/shared/buffer-overlay.js</string>
 				<string>data/shared/embeds/buffer-hotkey.js</string>
 				<string>data/safari/buffer-safari.js</string>
+				<string>data/safari/buffer-safari-install-check.js</string>
 				<string>data/shared/embeds/buffer-twitter.js</string>
 				<string>data/shared/embeds/buffer-hn.js</string>
 				<string>data/shared/embeds/buffer-reddit.js</string>
