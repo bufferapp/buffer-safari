@@ -67,6 +67,16 @@
 		<string>CheckBox</string>
 	</dict>
 	<dict>
+		<key>DefaultValue</key>
+		<true/>
+		<key>Key</key>
+		<string>image-overlays</string>
+		<key>Title</key>
+		<string>"Share Image" Button</string>
+		<key>Type</key>
+		<string>CheckBox</string>
+	</dict>
+	<dict>
 		<key>Type</key>
 		<string>Separator</string>
 	</dict>

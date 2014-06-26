@@ -110,45 +110,95 @@ if( ! localStorage.getItem('buffer.run') && ! localStorage.getItem('buffer.resta
 }
 
 // Fire the overlay when the button is clicked
-safari.application.addEventListener("command", function(ev) {
-    if( ev.command === "buffer_click" ) {
+safari.application.addEventListener('command', function(e) {
+
+    // Standard toolbar button click
+    if( e.command === 'buffer_click' ) {
         attachOverlay({
             tab: safari.application.activeBrowserWindow.activeTab,
             placement: 'toolbar'
         });
+        return;
     }
+
+    // Context menu click
+    if( e.command === 'buffer_contextmenu_click' ) {
+        contextMenuClick(e);
+    }
+
 }, false);
+
+
+// The userInfo is being set in buffer-safari.js
+safari.application.addEventListener('validate', function(e){
+    
+    e.target.title = 'Buffer This Page';
+
+    if (e.userInfo.nodeName === 'IMG') {
+        e.target.title = 'Buffer This Image';
+    } else if (e.userInfo.selectedText) {
+        e.target.title = 'Buffer This Text';
+    }
+
+}, false);
+
+var contextMenuClick = function(e) {
+
+    var placement = 'menu-page';
+
+    if (e.userInfo.nodeName === 'IMG') {
+        placement = 'menu-image';
+    } else if (e.userInfo.selectedText) {
+        placement = 'menu-selection';
+    }
+
+    attachOverlay({
+        tab: safari.application.activeBrowserWindow.activeTab,
+        placement: placement,
+        image: e.userInfo.imageUrl
+    });
+};
 
 var buildOptions = function () {
 
-    var prefs = [{
-        "name": "twitter",
-        "value": safari.extension.settings.twitter
-    },
-    {
-        "name": "facebook",
-        "value": safari.extension.settings.facebook
-    },
-    {
-        "name": "reader",
-        "value": safari.extension.settings.reader
-    },
-    {
-        "name": "reddit",
-        "value": safari.extension.settings.reddit
-    },
-    {
-        "name": "hacker",
-        "value": safari.extension.settings.hacker
-    },
-    {
-        "name": "key-combo",
-        "value": safari.extension.settings['key-combo']
-    },
-    {
-        "name": "key-enable",
-        "value": safari.extension.settings['key-enable']
-    }];
+    var prefs = [
+        {
+            "name": "twitter",
+            "value": safari.extension.settings.twitter
+        },
+        {
+            "name": "facebook",
+            "value": safari.extension.settings.facebook
+        },
+        {
+            "name": "reader",
+            "value": safari.extension.settings.reader
+        },
+        {
+            "name": "reddit",
+            "value": safari.extension.settings.reddit
+        },
+        {
+            "name": "hacker",
+            "value": safari.extension.settings.hacker
+        },
+        {
+            "name": "key-combo",
+            "value": safari.extension.settings['key-combo']
+        },
+        {
+            "name": "key-enable",
+            "value": safari.extension.settings['key-enable']
+        },
+        {
+            "name": "key-enable",
+            "value": safari.extension.settings['key-enable']
+        },
+        {
+            "name": "image-overlays",
+            "value": safari.extension.settings['image-overlays']
+        }
+    ];
 
     var options = {}, pref;
 
