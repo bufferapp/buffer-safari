@@ -3,14 +3,8 @@
 <plist version="1.0">
 <array>
 	<dict>
-		<key>DefaultValue</key>
-		<true/>
-		<key>Key</key>
-		<string>twitter</string>
 		<key>Title</key>
 		<string>Buffer Integration</string>
-		<key>TrueValue</key>
-		<string>twitter</string>
 		<key>Type</key>
 		<string>Group</string>
 	</dict>
@@ -33,6 +27,16 @@
 		<string>facebook</string>
 		<key>Title</key>
 		<string>Facebook</string>
+		<key>Type</key>
+		<string>CheckBox</string>
+	</dict>
+	<dict>
+		<key>DefaultValue</key>
+		<true/>
+		<key>Key</key>
+		<string>quora</string>
+		<key>Title</key>
+		<string>Quora</string>
 		<key>Type</key>
 		<string>CheckBox</string>
 	</dict>

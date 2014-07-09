@@ -171,6 +171,10 @@ var buildOptions = function () {
             "value": safari.extension.settings.facebook
         },
         {
+            "name": "quora",
+            "value": safari.extension.settings.quora
+        },
+        {
             "name": "reader",
             "value": safari.extension.settings.reader
         },
