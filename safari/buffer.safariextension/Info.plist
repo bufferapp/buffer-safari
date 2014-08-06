@@ -13,9 +13,9 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleShortVersionString</key>
-	<string>2.6.0</string>
+	<string>2.6.1</string>
 	<key>CFBundleVersion</key>
-	<string>2.6.0</string>
+	<string>2.6.1</string>
 	<key>Chrome</key>
 	<dict>
 		<key>Context Menu Items</key>
@@ -56,7 +56,7 @@
 				<string>data/shared/buffer-overlay.js</string>
 				<string>data/shared/embeds/buffer-hotkey.js</string>
 				<string>data/safari/buffer-safari.js</string>
-				<string>data/safari/buffer-safari-install-check.js</string>
+				<string>data/shared/buffer-install-check.js</string>
 				<string>data/shared/embeds/buffer-twitter.js</string>
 				<string>data/shared/embeds/buffer-hn.js</string>
 				<string>data/shared/embeds/buffer-reddit.js</string>
@@ -73,6 +73,10 @@
 				<string>data/safari/buffer-safari-embed.js</string>
 			</array>
 		</dict>
+		<key>Stylesheets</key>
+		<array>
+			<string>data/shared/buffer-extension-detection.css</string>
+		</array>
 	</dict>
 	<key>Description</key>
 	<string>Easily add great articles, pictures and videos to your Buffer and we automagically share them for you through the day!</string>
