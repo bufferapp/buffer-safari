@@ -275,13 +275,13 @@ embedPort.on("buffer_details", function (data) {
 
 });
 
-embedPort.on("buffer_details", function (data) {
+embedPort.on('buffer_get_extesion_info', function () {
 
     var tab = safari.application.activeBrowserWindow.activeTab;
-    var port = PortWrapper(tab, "main-embed");
+    var port = PortWrapper(tab, 'main-embed');
 
-    if( overlayPort ) {
-       overlayPort.emit("buffer_details", data);
-    }
+    port.emit('buffer_send_extesion_info', {
+        version: safari.info.CFBundleShortVersionString
+    });
 
 });
