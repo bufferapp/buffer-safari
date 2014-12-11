@@ -1,8 +1,12 @@
+/* global safari, bufferData, PortWrapper */
+
 $(function() {
+
     xt.port.emit('buffer_options');
-    xt.port.on('buffer_options', function (options) {
-        xt.options = options;
+    xt.port.on('buffer_options', function(options) {
+        if (!xt.options) xt.options = options;
     });
+
     var overlayPort = PortWrapper(safari.self, "overlay");
     overlayPort.on("buffer_click", function(postData) {
         bufferData(overlayPort, postData);

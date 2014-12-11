@@ -1,3 +1,5 @@
+/* global safari, PlistParser, PortWrapper */
+
 /*
 
 Buffer for Safari
@@ -134,6 +136,8 @@ safari.application.addEventListener('validate', function(e){
     
     e.target.title = 'Buffer This Page';
 
+    if (!e.userInfo) return;
+
     if (e.userInfo.nodeName === 'IMG') {
         e.target.title = 'Buffer This Image';
     } else if (e.userInfo.selectedText) {
@@ -243,14 +247,24 @@ embedPort.on("buffer_click", function(embed) {
     });
 });
 
-embedPort.on("buffer_options", function(embed) {
-    
+/**
+ * Emits the options to the embedded scripts on the active tab. 
+ * The listener and requester is in buffer-safari.js
+ */
+function emitOptions() {
     var tab = safari.application.activeBrowserWindow.activeTab;
-    var port = PortWrapper(tab, "main-embed");
+    var port = PortWrapper(tab, 'main-embed');
 
     port.emit('buffer_options', buildOptions());
+}
 
-});
+embedPort.on('buffer_options', emitOptions);
+
+// The options need to additionally be passed when the user switches to a new
+// active tab. This fixes the issue with the breaking extension with 
+// "open link in new tab"
+safari.application.addEventListener('activate', emitOptions, true);
+
 
 var overlayPort;
 embedPort.on("buffer_details_request", function () {

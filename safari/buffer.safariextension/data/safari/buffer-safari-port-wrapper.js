@@ -1,7 +1,11 @@
-// Make the (really) stupid Safari ports act like Firefox ones
-// Safari 'ports' are actually 'proxy' objects,
-// and the API changes subtly depending
-// whether this is loaded in to CS or global html.
+/**
+ * PortWrapper - a wrapper to make Safari messages & proxies behave more like
+ * Firefox ports. The Safari API changes slightly depending on whether this
+ * is loaded in a contentScript or not.
+ *
+ * port is either a safari tab object or the global safari.self object in 
+ * content scripts
+ */
 var PortWrapper = function (port, name) {
     
     var contentScript = false;
@@ -14,8 +18,8 @@ var PortWrapper = function (port, name) {
                 if( ev.name == type ) cb(ev.message);
             }, false);
         },
-        off: function (type) {
-            port.removeEventListener(type);
+        off: function (type, cb) {
+            port.removeEventListener(type, cb);
         },
         emit: function(type, payload) {
             //console.log(name, "dispatching ", type, payload);
@@ -34,5 +38,6 @@ var PortWrapper = function (port, name) {
 if( !xt ) var xt = {};
 xt.port = {
     on: function () {console.log("port.on called before initialised.", arguments)},
+    off: function () {console.log("port.off called before initialised.", arguments)},
     emit: function () {console.log("port.emit called before initialised.", arguments)}
 };
