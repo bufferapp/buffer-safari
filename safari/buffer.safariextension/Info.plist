@@ -54,7 +54,6 @@
 			<key>End</key>
 			<array>
 				<string>data/shared/buffer-overlay.js</string>
-				<string>data/shared/embeds/buffer-hotkey.js</string>
 				<string>data/safari/buffer-safari.js</string>
 				<string>data/shared/buffer-install-check.js</string>
 				<string>data/shared/embeds/buffer-twitter.js</string>
@@ -63,14 +62,16 @@
 				<string>data/shared/embeds/buffer-facebook.js</string>
 				<string>data/shared/embeds/buffer-hover-button.js</string>
 				<string>data/shared/embeds/buffer-quora.js</string>
+				<string>data/shared/embeds/buffer-hotkey.js</string>
 			</array>
 			<key>Start</key>
 			<array>
-				<string>data/shared/libs/jquery-1.7.2.min.js</string>
+				<string>data/shared/libs/jquery-2.1.1.min.js</string>
 				<string>data/shared/libs/postmessage.js</string>
 				<string>data/safari/buffer-safari-data-wrapper.js</string>
 				<string>data/safari/buffer-safari-port-wrapper.js</string>
 				<string>data/safari/buffer-safari-embed.js</string>
+				<string>data/shared/libs/keymaster.js</string>
 			</array>
 		</dict>
 		<key>Stylesheets</key>
