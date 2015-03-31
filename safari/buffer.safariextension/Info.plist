@@ -99,6 +99,6 @@
 	<key>Update Manifest URL</key>
 	<string>https://s3.amazonaws.com/buffer-static/extensions/safari/version.plist</string>
 	<key>Website</key>
-	<string>http://bufferapp.com</string>
+	<string>http://buffer.com</string>
 </dict>
 </plist>

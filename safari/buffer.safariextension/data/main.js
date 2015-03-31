@@ -20,8 +20,8 @@ safari.info = PlistParser.parse(req.responseXML);
 var config = {};
 config.plugin = {
     label: "Buffer This Page",
-    guide: 'http://bufferapp.com/guides/safari/installed',
-    restart: 'http://bufferapp.com/guides/safari/restart',
+    guide: 'http://buffer.com/guides/safari/installed',
+    restart: 'http://buffer.com/guides/safari/restart',
     version: safari.info.CFBundleShortVersionString,
     menu: {
         page: {
@@ -38,14 +38,14 @@ config.plugin = {
 
 // Overlay
 var attachOverlay = function (data, cb) {
-    
+
     if( typeof data === 'function' ) cb = data;
     if( ! data ) data = {};
     if( ! cb ) cb = function () {};
     if( ! data.embed ) data.embed = {};
-    
+
     var tab = data.tab;
-        
+
     var port = PortWrapper(tab, "main-overlay");
 
     // Remove the port once the Buffering is complete
@@ -58,14 +58,14 @@ var attachOverlay = function (data, cb) {
             cb(overlayData);
         }, 0);
     });
-    
+
     // Don't try to JSON encode a tab
     data.tab = null;
 
     // Pass statistic data
     data.version = config.plugin.version;
 	if( data.embed.placement ) data.placement = data.embed.placement;
-    
+
 	// Inform overlay that click has occurred
     port.emit("buffer_click", data);
 };
@@ -133,7 +133,7 @@ safari.application.addEventListener('command', function(e) {
 
 // The userInfo is being set in buffer-safari.js
 safari.application.addEventListener('validate', function(e){
-    
+
     e.target.title = 'Buffer This Page';
 
     if (!e.userInfo) return;
@@ -234,10 +234,10 @@ var buildOptions = function () {
 // Listen for embedded events (twitter/hacker news etc)
 var embedPort = PortWrapper(safari.application);
 embedPort.on("buffer_click", function(embed) {
-    
+
     var tab = safari.application.activeBrowserWindow.activeTab;
     var port = PortWrapper(tab, "main-embed");
-    
+
     // Listen for embedded triggers
     attachOverlay({tab: tab, embed: embed}, function (overlaydata) {
         if( !!overlaydata.sent ) {
@@ -248,7 +248,7 @@ embedPort.on("buffer_click", function(embed) {
 });
 
 /**
- * Emits the options to the embedded scripts on the active tab. 
+ * Emits the options to the embedded scripts on the active tab.
  * The listener and requester is in buffer-safari.js
  */
 function emitOptions() {
@@ -261,7 +261,7 @@ function emitOptions() {
 embedPort.on('buffer_options', emitOptions);
 
 // The options need to additionally be passed when the user switches to a new
-// active tab. This fixes the issue with the breaking extension with 
+// active tab. This fixes the issue with the breaking extension with
 // "open link in new tab"
 safari.application.addEventListener('activate', emitOptions, true);
 
