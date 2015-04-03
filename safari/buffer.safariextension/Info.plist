@@ -13,9 +13,9 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleShortVersionString</key>
-	<string>2.9.0</string>
+	<string>2.10.0</string>
 	<key>CFBundleVersion</key>
-	<string>2.9.0</string>
+	<string>2.10.0</string>
 	<key>Chrome</key>
 	<dict>
 		<key>Context Menu Items</key>
@@ -63,6 +63,7 @@
 				<string>data/shared/embeds/buffer-hover-button.js</string>
 				<string>data/shared/embeds/buffer-quora.js</string>
 				<string>data/shared/embeds/buffer-hotkey.js</string>
+				<string>data/shared/embeds/buffer-tweetdeck.js</string>
 			</array>
 			<key>Start</key>
 			<array>
@@ -78,6 +79,7 @@
 		<array>
 			<string>data/shared/buffer-extension-detection.css</string>
 			<string>data/shared/embeds/buffer-twitter.css</string>
+			<string>data/shared/embeds/buffer-tweetdeck.css</string>
 		</array>
 	</dict>
 	<key>Description</key>
