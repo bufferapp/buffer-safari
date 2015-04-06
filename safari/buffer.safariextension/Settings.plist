@@ -24,6 +24,18 @@
 		<key>DefaultValue</key>
 		<true/>
 		<key>Key</key>
+		<string>tweetdeck</string>
+		<key>Title</key>
+		<string>Tweetdeck</string>
+		<key>TrueValue</key>
+		<true/>
+		<key>Type</key>
+		<string>CheckBox</string>
+	</dict>
+	<dict>
+		<key>DefaultValue</key>
+		<true/>
+		<key>Key</key>
 		<string>facebook</string>
 		<key>Title</key>
 		<string>Facebook</string>
