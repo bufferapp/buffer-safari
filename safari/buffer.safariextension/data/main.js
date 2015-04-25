@@ -175,6 +175,10 @@ var buildOptions = function () {
             "value": safari.extension.settings.tweetdeck
         },
         {
+            "name": "pinterest",
+            "value": safari.extension.settings.pinterest
+        },
+        {
             "name": "facebook",
             "value": safari.extension.settings.facebook
         },
