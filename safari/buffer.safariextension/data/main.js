@@ -126,6 +126,12 @@ safari.application.addEventListener('command', function(e) {
     // Context menu click
     if( e.command === 'buffer_contextmenu_click' ) {
         contextMenuClick(e);
+        return;
+    }
+
+    if (e.command === 'pablo_contextmenu_click' ) {
+      sendToPablo(e);
+      return;
     }
 
 }, false);
@@ -140,11 +146,17 @@ safari.application.addEventListener('validate', function(e){
 
     if (e.userInfo.nodeName === 'IMG') {
         e.target.title = 'Buffer This Image';
+    } else if (e.command == "pablo_contextmenu_click") {
+      e.target.title = 'Create Image With Pablo';
     } else if (e.userInfo.selectedText) {
-        e.target.title = 'Buffer This Text';
+      e.target.title = 'Buffer This Text';
     }
 
 }, false);
+
+var sendToPablo = function(e) {
+  safari.application.activeBrowserWindow.openTab().url = 'https://buffer.com/pablo?text='+e.userInfo.selectedText;
+};
 
 var contextMenuClick = function(e) {
 

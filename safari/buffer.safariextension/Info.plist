@@ -5,7 +5,7 @@
 	<key>Author</key>
 	<string>Buffer</string>
 	<key>Builder Version</key>
-	<string>10600.1.25.1</string>
+	<string>10600.6.3</string>
 	<key>CFBundleDisplayName</key>
 	<string>Buffer</string>
 	<key>CFBundleIdentifier</key>
@@ -27,6 +27,14 @@
 				<string>buffer_contextmenu</string>
 				<key>Title</key>
 				<string>Buffer This Page</string>
+			</dict>
+			<dict>
+				<key>Command</key>
+				<string>pablo_contextmenu_click</string>
+				<key>Identifier</key>
+				<string>pablo_contextmenu</string>
+				<key>Title</key>
+				<string>Create Image With Pablo</string>
 			</dict>
 		</array>
 		<key>Database Quota</key>
