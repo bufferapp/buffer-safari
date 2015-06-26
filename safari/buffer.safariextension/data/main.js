@@ -64,10 +64,13 @@ var attachOverlay = function (data, cb) {
 
     // Pass statistic data
     data.version = config.plugin.version;
-	if( data.embed.placement ) data.placement = data.embed.placement;
+    if( data.embed.placement ) data.placement = data.embed.placement;
 
-	// Inform overlay that click has occurred
+    // Inform overlay that click has occurred
     port.emit("buffer_click", data);
+
+    // For the open popup fallback:
+    port.on('buffer_safari_open', openTab);
 };
 
 var openTab = function (url) {
