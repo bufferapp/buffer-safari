@@ -58,7 +58,6 @@ var attachOverlay = function (data, cb) {
             cb(overlayData);
         }, 0);
     });
-
     // Don't try to JSON encode a tab
     data.tab = null;
 
@@ -68,9 +67,6 @@ var attachOverlay = function (data, cb) {
 
     // Inform overlay that click has occurred
     port.emit("buffer_click", data);
-
-    // For the open popup fallback:
-    port.on('buffer_safari_open', openTab);
 };
 
 var openTab = function (url) {
@@ -78,6 +74,22 @@ var openTab = function (url) {
     var newTab = safari.application.activeBrowserWindow.openTab("foreground");
     newTab.url = url;
 };
+
+// For the open popup fallback:
+var attachPopupHandler = function(tab) {
+  tab.addEventListener('message', function (ev) {
+    if (ev.name === 'buffer_open_popup')
+      openTab(ev.message);
+  }, false);
+};
+
+safari.application.browserWindows.forEach(function(window) {
+  window.tabs.forEach(attachPopupHandler);
+});
+
+safari.application.addEventListener('open', function(e) {
+  attachPopupHandler(safari.application.activeBrowserWindow.activeTab);
+}, true);
 
 // Query for a specific tab by attribute and value
 //
