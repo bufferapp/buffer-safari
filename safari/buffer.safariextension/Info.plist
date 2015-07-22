@@ -88,6 +88,7 @@
 		<array>
 			<string>data/shared/buffer-extension-detection.css</string>
 			<string>data/shared/embeds/buffer-twitter.css</string>
+			<string>data/shared/embeds/buffer-facebook.css</string>
 			<string>data/shared/embeds/buffer-tweetdeck.css</string>
 			<string>data/shared/embeds/buffer-pinterest.css</string>
 		</array>
