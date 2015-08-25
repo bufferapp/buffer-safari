@@ -39,6 +39,10 @@ config.plugin = {
         image: {
             command: 'contextmenu-buffer-image',
             label: 'Buffer This Image'
+        },
+        pablo_image: {
+            command: 'contextmenu-pablo-image',
+            label: 'Open Image With Pablo'
         }
     }
 };
@@ -148,6 +152,7 @@ function handleContextMenu(e) {
             break;
         case 'image':
             e.contextMenu.appendContextMenuItem(config.plugin.contextMenu.image.command, config.plugin.contextMenu.image.label);
+            e.contextMenu.appendContextMenuItem(config.plugin.contextMenu.pablo_image.command, config.plugin.contextMenu.pablo_image.label);
             break;
     }
 }
@@ -156,13 +161,14 @@ function handleContextMenu(e) {
 safari.application.addEventListener('command', performCommand, false);
 
 function performCommand(e) {
-    var shouldUsePablo = e.command == config.plugin.contextMenu.pablo_text.command;
+    var shouldUsePablo = [config.plugin.contextMenu.pablo_text.command, config.plugin.contextMenu.pablo_image.command].indexOf(e.command) != -1;
 
     // Open text/image with Pablo
     if (shouldUsePablo) {
         var queryParam;
 
         if (e.command == config.plugin.contextMenu.pablo_text.command) queryParam = 'text=' + e.userInfo.selectedText;
+            else if (e.command == config.plugin.contextMenu.pablo_image.command) queryParam = 'image=' + encodeURIComponent(e.userInfo.imageUrl);
 
         safari.application.activeBrowserWindow.openTab().url = 'https://buffer.com/pablo?' + queryParam;
 
