@@ -19,19 +19,26 @@ safari.info = PlistParser.parse(req.responseXML);
 // Configuration
 var config = {};
 config.plugin = {
-    label: "Buffer This Page",
     guide: 'http://buffer.com/guides/safari/installed',
     restart: 'http://buffer.com/guides/safari/restart',
     version: safari.info.CFBundleShortVersionString,
-    menu: {
+
+    contextMenu: {
         page: {
-            label: "Buffer This Page"
+            command: 'contextmenu-buffer-page',
+            label: 'Buffer This Page'
         },
-        selection: {
-            label: "Buffer Selected Text"
+        text: {
+            command: 'contextmenu-buffer-text',
+            label: 'Buffer Selected Text'
+        },
+        pablo_text: {
+            command: 'contextmenu-pablo-text',
+            label: 'Create Image With Pablo'
         },
         image: {
-            label: "Buffer This Image"
+            command: 'contextmenu-buffer-image',
+            label: 'Buffer This Image'
         }
     }
 };
@@ -126,69 +133,65 @@ if( ! localStorage.getItem('buffer.run') && ! localStorage.getItem('buffer.resta
     }
 }
 
-// Fire the overlay when the button is clicked
-safari.application.addEventListener('command', function(e) {
+// The 'contextmenu' event is fired just before the 'validate' event
+safari.application.addEventListener('contextmenu', handleContextMenu, false);
 
-    // Standard toolbar button click
-    if( e.command === 'buffer_click' ) {
-        attachOverlay({
-            tab: safari.application.activeBrowserWindow.activeTab,
-            placement: 'toolbar'
-        });
-        return;
+// Programmatically add items to the context menu
+function handleContextMenu(e) {
+    switch (e.userInfo.context) {
+        case 'page':
+            e.contextMenu.appendContextMenuItem(config.plugin.contextMenu.page.command, config.plugin.contextMenu.page.label);
+            break;
+        case 'text':
+            e.contextMenu.appendContextMenuItem(config.plugin.contextMenu.text.command, config.plugin.contextMenu.text.label);
+            e.contextMenu.appendContextMenuItem(config.plugin.contextMenu.pablo_text.command, config.plugin.contextMenu.pablo_text.label);
+            break;
+        case 'image':
+            e.contextMenu.appendContextMenuItem(config.plugin.contextMenu.image.command, config.plugin.contextMenu.image.label);
+            break;
+    }
+}
+
+// Listen to clicks on buttons in the toolbar and in context menus
+safari.application.addEventListener('command', performCommand, false);
+
+function performCommand(e) {
+    var shouldUsePablo = e.command == config.plugin.contextMenu.pablo_text.command;
+
+    // Open text/image with Pablo
+    if (shouldUsePablo) {
+        var queryParam;
+
+        if (e.command == config.plugin.contextMenu.pablo_text.command) queryParam = 'text=' + e.userInfo.selectedText;
+
+        safari.application.activeBrowserWindow.openTab().url = 'https://buffer.com/pablo?' + queryParam;
+
+    // Open page/text/image with Buffer
+    } else {
+        var overlayData = {
+            tab: safari.application.activeBrowserWindow.activeTab
+        };
+
+        switch (e.command) {
+            case 'buffer_click': // Click on toolbar button
+                overlayData.placement = 'toolbar';
+                break;
+            case config.plugin.contextMenu.page.command:
+                overlayData.placement = 'menu-page';
+                break;
+            case config.plugin.contextMenu.text.command:
+                overlayData.placement = 'menu-selection';
+                break;
+            case config.plugin.contextMenu.image.command:
+                overlayData.placement = 'menu-image';
+                overlayData.image = e.userInfo.imageUrl;
+                break;
+        }
+
+        attachOverlay(overlayData);
     }
 
-    // Context menu click
-    if( e.command === 'buffer_contextmenu_click' ) {
-        contextMenuClick(e);
-        return;
-    }
-
-    if (e.command === 'pablo_contextmenu_click' ) {
-      sendToPablo(e);
-      return;
-    }
-
-}, false);
-
-
-// The userInfo is being set in buffer-safari.js
-safari.application.addEventListener('validate', function(e){
-
-    e.target.title = 'Buffer This Page';
-
-    if (!e.userInfo) return;
-
-    if (e.userInfo.nodeName === 'IMG') {
-        e.target.title = 'Buffer This Image';
-    } else if (e.command == "pablo_contextmenu_click") {
-      e.target.title = 'Create Image With Pablo';
-    } else if (e.userInfo.selectedText) {
-      e.target.title = 'Buffer This Text';
-    }
-
-}, false);
-
-var sendToPablo = function(e) {
-  safari.application.activeBrowserWindow.openTab().url = 'https://buffer.com/pablo?text='+e.userInfo.selectedText;
-};
-
-var contextMenuClick = function(e) {
-
-    var placement = 'menu-page';
-
-    if (e.userInfo.nodeName === 'IMG') {
-        placement = 'menu-image';
-    } else if (e.userInfo.selectedText) {
-        placement = 'menu-selection';
-    }
-
-    attachOverlay({
-        tab: safari.application.activeBrowserWindow.activeTab,
-        placement: placement,
-        image: e.userInfo.imageUrl
-    });
-};
+}
 
 var buildOptions = function () {
 

@@ -12,15 +12,25 @@ $(function() {
         bufferData(overlayPort, postData);
     });
 
-    // Add extra context for the right click menu buttons.
-    // This userInfo data is used in the main.js 'validate' event listener
-    document.addEventListener('contextmenu', function(e) {
-      safari.self.tab.setContextMenuEventUserInfo(e, {
-        nodeName: e.target.nodeName,
-        imageUrl: e.target.src,
-        selectedText: document.getSelection().toString()
-      });
-    }, false);
+    document.addEventListener('contextmenu', attachDataToContextMenuEvent, false);
+
+    // Add extra info to context menu events, available through event.userInfo
+    function attachDataToContextMenuEvent(e) {
+        var userInfo = {};
+        var selectedText = document.getSelection().toString();
+
+        if (e.target.nodeName == 'IMG') {
+            userInfo.context = 'image';
+            userInfo.imageUrl = e.target.src;
+        } else if (selectedText.length) {
+            userInfo.context = 'text';
+            userInfo.selectedText = selectedText;
+        } else {
+            userInfo.context = 'page';
+        }
+
+        safari.self.tab.setContextMenuEventUserInfo(e, userInfo);
+    }
 });
 
 

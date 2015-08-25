@@ -18,25 +18,6 @@
 	<string>2.12.9</string>
 	<key>Chrome</key>
 	<dict>
-		<key>Context Menu Items</key>
-		<array>
-			<dict>
-				<key>Command</key>
-				<string>buffer_contextmenu_click</string>
-				<key>Identifier</key>
-				<string>buffer_contextmenu</string>
-				<key>Title</key>
-				<string>Buffer This Page</string>
-			</dict>
-			<dict>
-				<key>Command</key>
-				<string>pablo_contextmenu_click</string>
-				<key>Identifier</key>
-				<string>pablo_contextmenu</string>
-				<key>Title</key>
-				<string>Create Image With Pablo</string>
-			</dict>
-		</array>
 		<key>Database Quota</key>
 		<real>1048576</real>
 		<key>Global Page</key>
