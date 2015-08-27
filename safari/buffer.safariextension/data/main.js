@@ -172,7 +172,7 @@ function performCommand(e) {
     if (shouldUsePablo) {
         var queryParam;
 
-        if (e.command == config.plugin.contextMenu.pablo_text.command) queryParam = 'text=' + e.userInfo.selectedText;
+        if (e.command == config.plugin.contextMenu.pablo_text.command) queryParam = 'text=' + encodeURIComponent(e.userInfo.selectedText);
             else if (e.command == config.plugin.contextMenu.pablo_image.command) queryParam = 'image=' + encodeURIComponent(e.userInfo.imageUrl);
 
         safari.application.activeBrowserWindow.openTab().url = 'https://buffer.com/pablo?' + queryParam;
