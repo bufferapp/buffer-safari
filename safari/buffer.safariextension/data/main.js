@@ -1,4 +1,4 @@
-/* global safari, PlistParser, PortWrapper */
+/* global safari, PlistParser, PortWrapper, _bmq */
 
 /*
 
@@ -78,6 +78,11 @@ var attachOverlay = function (data, cb) {
 
     // Inform overlay that click has occurred
     port.emit("buffer_click", data);
+
+    // Map content script _bmq calls to the real _bmq here
+    port.on('buffer_tracking', function(payload) {
+        _bmq[payload.methodName].apply(_bmq, payload.args);
+    });
 };
 
 var openTab = function (url) {
