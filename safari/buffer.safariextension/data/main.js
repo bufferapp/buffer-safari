@@ -21,6 +21,7 @@ var config = {};
 config.plugin = {
     guide: 'http://buffer.com/guides/safari/installed',
     restart: 'http://buffer.com/guides/safari/restart',
+    browser: 'safari',
     version: safari.info.CFBundleShortVersionString,
 
     contextMenu: {
