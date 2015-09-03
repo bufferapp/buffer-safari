@@ -67,6 +67,7 @@
 		</dict>
 		<key>Stylesheets</key>
 		<array>
+			<string>data/shared/buffer-overlay.css</string>
 			<string>data/shared/buffer-extension-detection.css</string>
 			<string>data/shared/embeds/buffer-twitter.css</string>
 			<string>data/shared/embeds/buffer-facebook.css</string>
