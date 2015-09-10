@@ -9,6 +9,9 @@ Authors: Tom Ashworth           Joel Gascoigne
 
 */
 
+var latestOverlayPort;
+var extensionUserData;
+
 // Grab info from Info.plist and convert it to Javascript object,
 // and store it in safari.info
 var req = new XMLHttpRequest();
@@ -58,7 +61,7 @@ var attachOverlay = function (data, cb) {
 
     var tab = data.tab;
 
-    var port = PortWrapper(tab, "main-overlay");
+    var port = latestOverlayPort = PortWrapper(tab, "main-overlay");
 
     // Remove the port once the Buffering is complete
     port.on('buffer_done', function (overlayData) {
@@ -84,6 +87,13 @@ var attachOverlay = function (data, cb) {
     port.on('buffer_tracking', function(payload) {
         _bmq[payload.methodName].apply(_bmq, payload.args);
     });
+
+    // Send cached user data to overlay when it opens up
+    if (extensionUserData) {
+      port.on('buffer_overlay_open', function() {
+        port.emit('buffer_user_data', extensionUserData);
+      });
+    }
 };
 
 var openTab = function (url) {
@@ -348,4 +358,11 @@ embedPort.on('buffer_get_extesion_info', function () {
         version: safari.info.CFBundleShortVersionString
     });
 
+});
+
+// Listen for user data from buffer-get-user-info, and send it
+// straight to overlay to make it available there
+embedPort.on('buffer_user_data', function(userData) {
+  extensionUserData = userData;
+  latestOverlayPort.emit('buffer_user_data', extensionUserData);
 });
