@@ -45,7 +45,6 @@
 				<string>data/shared/buffer-overlay.js</string>
 				<string>data/safari/buffer-safari.js</string>
 				<string>data/shared/buffer-install-check.js</string>
-				<string>data/shared/buffer-get-user-info.js</string>
 				<string>data/shared/embeds/buffer-twitter.js</string>
 				<string>data/shared/embeds/buffer-hn.js</string>
 				<string>data/shared/embeds/buffer-reddit.js</string>

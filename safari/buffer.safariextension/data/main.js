@@ -9,7 +9,6 @@ Authors: Tom Ashworth           Joel Gascoigne
 
 */
 
-var latestOverlayPort;
 var extensionUserData;
 
 // Grab info from Info.plist and convert it to Javascript object,
@@ -61,7 +60,7 @@ var attachOverlay = function (data, cb) {
 
     var tab = data.tab;
 
-    var port = latestOverlayPort = PortWrapper(tab, "main-overlay");
+    var port = PortWrapper(tab, "main-overlay");
 
     // Remove the port once the Buffering is complete
     port.on('buffer_done', function (overlayData) {
@@ -94,6 +93,12 @@ var attachOverlay = function (data, cb) {
         port.emit('buffer_user_data', extensionUserData);
       });
     }
+
+    // Listen for user data from buffer-overlay, and cache it here
+    port.on('buffer_user_data', function(userData) {
+      extensionUserData = userData;
+      port.emit('buffer_user_data', extensionUserData);
+    });
 };
 
 var openTab = function (url) {
@@ -358,11 +363,4 @@ embedPort.on('buffer_get_extesion_info', function () {
         version: safari.info.CFBundleShortVersionString
     });
 
-});
-
-// Listen for user data from buffer-get-user-info, and send it
-// straight to overlay to make it available there
-embedPort.on('buffer_user_data', function(userData) {
-  extensionUserData = userData;
-  latestOverlayPort.emit('buffer_user_data', extensionUserData);
 });
