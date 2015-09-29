@@ -9,7 +9,7 @@ Authors: Tom Ashworth           Joel Gascoigne
 
 */
 
-var extensionUserData;
+var extensionUserData = JSON.parse(localStorage.getItem('buffer.extensionUserData'));
 
 // Grab info from Info.plist and convert it to Javascript object,
 // and store it in safari.info
@@ -97,6 +97,7 @@ var attachOverlay = function (data, cb) {
     // Listen for user data from buffer-overlay, and cache it here
     port.on('buffer_user_data', function(userData) {
       extensionUserData = userData;
+      localStorage.setItem('buffer.extensionUserData', JSON.stringify(extensionUserData));
       port.emit('buffer_user_data', extensionUserData);
     });
 };
