@@ -192,6 +192,8 @@ function performCommand(e) {
         if (e.command == config.plugin.contextMenu.pablo_text.command) queryParam = 'text=' + encodeURIComponent(e.userInfo.selectedText);
             else if (e.command == config.plugin.contextMenu.pablo_image.command) queryParam = 'image=' + encodeURIComponent(e.userInfo.imageUrl);
 
+        queryParam += '&source_url=' + encodeURIComponent(e.userInfo.documentUrl);
+
         safari.application.activeBrowserWindow.openTab().url = 'https://buffer.com/pablo?' + queryParam;
 
     // Open page/text/image with Buffer

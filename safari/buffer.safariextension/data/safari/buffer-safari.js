@@ -16,7 +16,9 @@ $(function() {
 
     // Add extra info to context menu events, available through event.userInfo
     function attachDataToContextMenuEvent(e) {
-        var userInfo = {};
+        var userInfo = {
+          documentUrl: document.URL
+        };
         var selectedText = document.getSelection().toString();
 
         if (e.target.nodeName == 'IMG') {
