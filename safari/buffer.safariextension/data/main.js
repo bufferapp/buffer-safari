@@ -121,7 +121,7 @@ safari.application.browserWindows.forEach(function(window) {
 });
 
 safari.application.addEventListener('open', function(e) {
-  attachPopupHandler(safari.application.activeBrowserWindow.activeTab);
+  attachPopupHandler(e.target);
 }, true);
 
 // Query for a specific tab by attribute and value
