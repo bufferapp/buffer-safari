@@ -121,7 +121,9 @@ safari.application.browserWindows.forEach(function(window) {
 });
 
 safari.application.addEventListener('open', function(e) {
-  attachPopupHandler(e.target);
+    // The open event can be heard multiple times for multiple targets, e.g.
+    // SafariBrowserTab, SafariBrowserWindow; only react to a SafariBrowserTab opening
+    if (e.target instanceof SafariBrowserTab) attachPopupHandler(e.target);
 }, true);
 
 // Query for a specific tab by attribute and value
