@@ -95,5 +95,7 @@
 	<string>https://s3.amazonaws.com/buffer-static/extensions/safari/version.plist</string>
 	<key>Website</key>
 	<string>http://buffer.com</string>
+	<key>Update From Gallery</key>
+	<true/>
 </dict>
 </plist>
