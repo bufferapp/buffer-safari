@@ -5,7 +5,7 @@
 	<key>Author</key>
 	<string>Buffer</string>
 	<key>Builder Version</key>
-	<string>10600.6.3</string>
+	<string>11601.5.17.1</string>
 	<key>CFBundleDisplayName</key>
 	<string>Buffer</string>
 	<key>CFBundleIdentifier</key>
@@ -13,9 +13,9 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleShortVersionString</key>
-	<string>2.13.17</string>
+	<string>2.13.22</string>
 	<key>CFBundleVersion</key>
-	<string>2.13.17</string>
+	<string>2.13.22</string>
 	<key>Chrome</key>
 	<dict>
 		<key>Database Quota</key>
@@ -91,11 +91,11 @@
 			<string>All</string>
 		</dict>
 	</dict>
+	<key>Update From Gallery</key>
+	<true/>
 	<key>Update Manifest URL</key>
 	<string>https://s3.amazonaws.com/buffer-static/extensions/safari/version.plist</string>
 	<key>Website</key>
 	<string>http://buffer.com</string>
-	<key>Update From Gallery</key>
-	<true/>
 </dict>
 </plist>
