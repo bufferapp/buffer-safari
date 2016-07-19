@@ -111,8 +111,18 @@ var openTab = function (url) {
 // For the open popup fallback:
 var attachPopupHandler = function(tab) {
   tab.addEventListener('message', function (ev) {
-    if (ev.name === 'buffer_open_popup')
-      openTab(ev.message);
+    if (ev.name === 'buffer_open_popup') {
+      var url = ev.message.src;
+      var isSmallPopup = !!ev.message.isSmallPopup;
+
+      if (isSmallPopup) {
+        var smallPopup = safari.application.openBrowserWindow().activeTab;
+        smallPopup.url = url;
+        // Can't quite set the width/height with this API as far as the docs go
+      } else {
+        openTab(ev.message.src);
+      }
+    }
   }, false);
 };
 
