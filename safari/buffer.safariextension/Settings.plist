@@ -136,7 +136,31 @@
 	</dict>
 	<dict>
 		<key>Title</key>
-		<string>Please refresh any open tabs after making changes.</string>
+		<string>Open Buffer Extension As</string>
+		<key>Type</key>
+		<string>Group</string>
+	</dict>
+	<dict>
+		<key>DefaultValue</key>
+		<string>overlay</string>
+		<key>Key</key>
+		<string>open-as</string>
+		<key>Title</key>
+		<string>Always open Buffer extension as</string>
+		<key>Titles</key>
+		<array>
+			<string>Overlay on page</string>
+			<string>New tab</string>
+		</array>
+		<key>Type</key>
+		<string>RadioButtons</string>
+		<key>Values</key>
+		<array>
+			<string>overlay</string>
+			<string>new-tab</string>
+		</array>
+	</dict>
+	<dict>
 		<key>Type</key>
 		<string>Separator</string>
 	</dict>

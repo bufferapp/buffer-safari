@@ -285,7 +285,11 @@ var buildOptions = function () {
         {
             "name": "image-overlays",
             "value": safari.extension.settings['image-overlays']
-        }
+        },
+        {
+            "name": "open-as",
+            "value": safari.extension.settings['open-as']
+        },
     ];
 
     var options = {}, pref;
@@ -298,6 +302,8 @@ var buildOptions = function () {
             pref = prefs[i];
             if( pref.name == 'key-combo' ) {
                 options['buffer.op.key-combo'] = safari.extension.settings['key-combo'];
+            } else if (pref.name == 'open-as') {
+                options['buffer.op.open-as'] = safari.extension.settings['open-as'];
             } else {
                 if( safari.extension.settings[pref.name] === false ) {
                     options["buffer.op." + pref.name] = "false";
