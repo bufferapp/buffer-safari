@@ -63,6 +63,7 @@
 				<string>data/safari/buffer-safari-port-wrapper.js</string>
 				<string>data/safari/buffer-safari-embed.js</string>
 				<string>data/shared/libs/keymaster.js</string>
+				<string>data/shared/libs/he.js</string>
 			</array>
 		</dict>
 		<key>Stylesheets</key>
