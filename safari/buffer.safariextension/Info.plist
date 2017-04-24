@@ -5,7 +5,7 @@
 	<key>Author</key>
 	<string>Buffer</string>
 	<key>Builder Version</key>
-	<string>11602.4.8.0.1</string>
+	<string>11603.1.30.0.34</string>
 	<key>CFBundleDisplayName</key>
 	<string>Buffer</string>
 	<key>CFBundleIdentifier</key>
@@ -13,9 +13,9 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleShortVersionString</key>
-	<string>3.3.5</string>
+	<string>3.3.6</string>
 	<key>CFBundleVersion</key>
-	<string>3.3.5</string>
+	<string>3.3.6</string>
 	<key>Chrome</key>
 	<dict>
 		<key>Database Quota</key>
@@ -77,7 +77,7 @@
 		</array>
 	</dict>
 	<key>Description</key>
-	<string>Easily add great articles, pictures and videos to your Buffer and we automagically share them for you through the day!</string>
+	<string>Buffer is the best way to share great content to Twitter, Facebook and more with just one click.</string>
 	<key>DeveloperIdentifier</key>
 	<string>UYDA63C4EC</string>
 	<key>ExtensionInfoDictionaryVersion</key>
