@@ -184,10 +184,14 @@ function handleContextMenu(e) {
             e.contextMenu.appendContextMenuItem(config.plugin.contextMenu.text.command, config.plugin.contextMenu.text.label);
             e.contextMenu.appendContextMenuItem(config.plugin.contextMenu.pablo_text.command, config.plugin.contextMenu.pablo_text.label);
             break;
-        case 'image':
-            e.contextMenu.appendContextMenuItem(config.plugin.contextMenu.image.command, config.plugin.contextMenu.image.label);
-            e.contextMenu.appendContextMenuItem(config.plugin.contextMenu.pablo_image.command, config.plugin.contextMenu.pablo_image.label);
+        case 'image': {
+            var imageExtensionMatch = e.userInfo.imageUrl.match(/\.[a-z]{3,4}$/i);
+            if (imageExtensionMatch === null || /\.(jpg|jpeg|gif|png)/i.test(imageExtensionMatch[0])) {
+              e.contextMenu.appendContextMenuItem(config.plugin.contextMenu.image.command, config.plugin.contextMenu.image.label);
+              e.contextMenu.appendContextMenuItem(config.plugin.contextMenu.pablo_image.command, config.plugin.contextMenu.pablo_image.label);
+            }
             break;
+        }
     }
 }
 
