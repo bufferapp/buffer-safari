@@ -5,7 +5,7 @@
 	<key>Author</key>
 	<string>Buffer</string>
 	<key>Builder Version</key>
-	<string>11604.5.6.1.1</string>
+	<string>14606.1.36.1.9</string>
 	<key>CFBundleDisplayName</key>
 	<string>Buffer</string>
 	<key>CFBundleIdentifier</key>
@@ -57,7 +57,7 @@
 			</array>
 			<key>Start</key>
 			<array>
-				<string>data/shared/libs/jquery-2.1.1.min.js</string>
+				<string>data/shared/libs/jquery-3.4.1.min.js</string>
 				<string>data/shared/libs/postmessage.js</string>
 				<string>data/safari/buffer-safari-data-wrapper.js</string>
 				<string>data/safari/buffer-safari-port-wrapper.js</string>
