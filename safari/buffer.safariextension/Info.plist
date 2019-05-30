@@ -13,9 +13,9 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleShortVersionString</key>
-	<string>3.4.2</string>
+	<string>3.4.4</string>
 	<key>CFBundleVersion</key>
-	<string>3.4.2</string>
+	<string>3.4.4</string>
 	<key>Chrome</key>
 	<dict>
 		<key>Database Quota</key>
@@ -57,7 +57,7 @@
 			</array>
 			<key>Start</key>
 			<array>
-				<string>data/shared/libs/jquery-3.4.1.min.js</string>
+				<string>data/shared/libs/jquery-2.1.1.min.js</string>
 				<string>data/shared/libs/postmessage.js</string>
 				<string>data/safari/buffer-safari-data-wrapper.js</string>
 				<string>data/safari/buffer-safari-port-wrapper.js</string>
