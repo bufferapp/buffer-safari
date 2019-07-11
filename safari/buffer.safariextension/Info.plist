@@ -21,7 +21,7 @@
 		<key>Database Quota</key>
 		<real>1048576</real>
 		<key>Global Page</key>
-		<string>data/shared/buffer-frame-container.html</string>
+		<string>buffer.html</string>
 		<key>Toolbar Items</key>
 		<array>
 			<dict>
@@ -57,7 +57,7 @@
 			</array>
 			<key>Start</key>
 			<array>
-				<string></string>
+				<string>data/shared/libs/jquery-3.4.1.min.js</string>
 				<string>data/shared/libs/postmessage.js</string>
 				<string>data/safari/buffer-safari-data-wrapper.js</string>
 				<string>data/safari/buffer-safari-port-wrapper.js</string>
